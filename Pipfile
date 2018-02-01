@@ -1,0 +1,20 @@
+[[source]]
+
+url = "https://pypi.python.org/credo-api-service"
+verify_ssl = true
+name = "credo-api-service"
+
+
+[dev-packages]
+
+
+
+[packages]
+
+flask = "*"
+pika = "*"
+
+
+[requires]
+
+python_version = "2.7"
