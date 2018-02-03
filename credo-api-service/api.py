@@ -1,6 +1,7 @@
 from flask import Flask, request
 
-from validator import validate, ValidationException
+from handler import handle_detection
+from validator import ValidationException
 
 app = Flask(__name__)
 
@@ -20,12 +21,3 @@ def detection():
         return "There was a problem while processing the message: " + str(e), 500
 
     return "", 200
-
-
-def sendmessage(message):
-    pass
-
-
-def handle_detection(message):
-    validate(message)
-    sendmessage(message)
