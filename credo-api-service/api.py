@@ -1,11 +1,11 @@
 from flask import Flask, request
 
-from validator import validate
+from validator import validate, ValidationException
 
 app = Flask(__name__)
 
 
-@app.route('/detection', methods=['GET', 'POST'])
+@app.route('/detection', methods=['POST'])
 def detection():
     try:
         message = request.get_json(force=True)
@@ -14,8 +14,11 @@ def detection():
 
     try:
         handle_detection(message)
+    except ValidationException, e:
+        return "The message contained invalid data: " + str(e), 422
     except Exception, e:
-        pass
+        return "There was a problem while processing the message: " + str(e), 500
+
 
     return
 
