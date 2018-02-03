@@ -1,12 +1,12 @@
-from flask import Flask, request
+from flask import Blueprint, request
 
 from handler import handle_detection
 from validator import ValidationException
 
-app = Flask(__name__)
+api = Blueprint('api', __name__)
 
 
-@app.route('/detection', methods=['POST'])
+@api.route('/detection', methods=['POST'])
 def detection():
     try:
         message = request.get_json(force=True)
