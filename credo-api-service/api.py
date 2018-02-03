@@ -19,11 +19,10 @@ def detection():
     except Exception, e:
         return "There was a problem while processing the message: " + str(e), 500
 
+    return "", 200
 
-    return
 
-
-def sendmessage():
+def sendmessage(message):
     pass
 
 

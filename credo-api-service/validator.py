@@ -1,6 +1,6 @@
 # do some basic validation
 
-REQUIRED_FIELDS = ['body', 'header']
+REQUIRED_FIELDS = {u'body', u'header'}
 
 
 class ValidationException(Exception):
@@ -8,7 +8,7 @@ class ValidationException(Exception):
 
 
 def validate(message):
-    if REQUIRED_FIELDS not in message.keys():
+    if not REQUIRED_FIELDS.issubset(set(message.keys())):
         raise ValidationException("A required field is missing!")
 
     return False
