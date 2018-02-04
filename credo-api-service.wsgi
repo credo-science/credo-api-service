@@ -1,0 +1,1 @@
+from credoapiservice import app as application
