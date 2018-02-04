@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.register_blueprint(api)
 
 
-@app.teardown_appcontext
+@app.do_teardown_appcontext
 def close_rabbitmq_connection(exception):
     if hasattr(g, 'rabbitmq_lock'):
         g.rabbitmq_lock.acquire()
