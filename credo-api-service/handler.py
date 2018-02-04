@@ -2,6 +2,7 @@ from validator import validate, ValidationException
 from flask import g
 import pika
 import config
+import json
 from threading import Lock
 
 EXCHANGE_NAME = 'detections'
@@ -22,7 +23,7 @@ def send_message(message):
         g.rabbitmq_lock.release()
 
     g.rabbitmq_lock.acquire()
-    g.rabbitmq_channel.basic_publish(exchange=EXCHANGE_NAME, routing_key='', body=message)
+    g.rabbitmq_channel.basic_publish(exchange=EXCHANGE_NAME, routing_key='', body=json.dumps(message))
     g.rabbitmq_lock.release()
 
 
